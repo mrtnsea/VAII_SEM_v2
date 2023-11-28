@@ -1,0 +1,77 @@
+#guide {
+    margin-top: 70px;
+}
+
+.section {
+    color: white;
+    width: 44%;
+    margin: 20px 1% 20px 15%;
+    float: left;
+    font-size: large;
+}
+
+.sectionHeader {
+    background-color: rgba(214,180,241,255);
+    border-radius: 25px;
+    text-align: center;
+}
+
+.section img {
+    max-width: 100%;
+    margin: 10px;
+}
+
+.section .container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.section .container img {
+    max-width: 125px;
+    height: auto;
+}
+
+.section > h2 {
+    width: 100%;
+    text-align: center;
+    background: rgba(44,41,47,255);
+    padding: 10px;
+    border-radius: 25px;
+}
+
+.col-sm {
+    text-align: center;
+}
+
+.tableOfContent {
+    width: 24%;
+    float: right;
+    margin: 70px 15% 20px 61%;
+    color: white;
+    font-size: large;
+    background: rgba(44,41,47,255);
+    border-radius: 25px;
+    position: fixed;
+}
+
+.tableOfContent > h5 {
+    text-align: center;
+}
+
+.guideLink {
+    text-decoration: none;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .tableOfContent {
+        display: none;
+    }
+
+    .section {
+        width: 90%;
+        margin: 10px 5% 10px 5%;
+    }
+}
+

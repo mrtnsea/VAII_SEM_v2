@@ -1,0 +1,112 @@
+.add {
+    margin: 90px 5% 10px 5%;
+    width: 90%;
+    display: flex;
+    flex-wrap: wrap;
+    background-color: rgba(214,180,241,255) !important;
+    border-radius: 25px;
+    color: black;
+}
+
+.myButton {
+    color: black;
+    border: solid black;
+    margin: 0 10px 0 10px;
+    align-self: flex-end;
+}
+
+.container {
+    display: grid;
+    width: 90%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background: rgba(44,41,47,255);
+    border-radius: 25px;
+    color: white;
+}
+
+.characterImg {
+    border-radius: 25px;
+    max-height: 100px;
+    width: auto;
+    object-fit: contain;
+}
+
+.cardTeamSelect {
+    width: 90%;
+    background: rgba(67,55,68,255);;
+    border-radius: 25px;
+    margin: 10px 5% 10px 5%;
+    color: white;
+}
+
+.bodyTeamSelect {
+    background-color: inherit;
+    display: inline-flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-content: center;
+    flex-wrap: wrap;
+    font-weight: bold;
+    font-size: large;
+}
+
+.bodyTeamSelect > h5 {
+    margin: 0 10px 0 10px;
+}
+
+.bodyTeamSelect > p {
+    margin: 0 10px 0 10px;
+}
+
+.nav-item > h5 {
+    display: flex !important;
+    align-items: center;
+    font-weight: bold !important;
+    font-size: large !important;
+    margin-bottom: 0;
+    color: black !important;
+}
+
+.nav-item > p {
+    display: flex !important;
+    align-items: center;
+    font-weight: bold !important;
+    font-size: large !important;
+    color: black !important;
+}
+
+.container-fluid > p {
+    display: flex !important;
+    align-items: center;
+    font-weight: bold !important;
+    font-size: large !important;
+    color: black !important;
+    margin-bottom: 0;
+}
+
+.iconImg {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.container {
+    color: white;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    font-size: large;
+    font-weight: bold;
+    margin: 10px;
+}
+
+#addButton {
+    align-self: flex-end;
+}
+
+#navbarNavDropdown {
+    justify-content: space-between;
+}

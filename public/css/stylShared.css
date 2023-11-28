@@ -1,0 +1,51 @@
+#sticky-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    font-size: large;
+}
+
+body {
+    background-image: url("../images/backgrounds/Stars.jpg");
+    background-size: cover;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: grid;
+    grid-template-rows: 1fr auto;
+}
+
+.btn {
+    white-space: nowrap;
+}
+
+.footer {
+    background: rgba(44,41,47,255) !important;
+    border-radius: 25px;
+    width: 90%;
+    margin: 50px 5% 0 5% !important;
+    display: flex;
+    justify-content: center;
+}
+
+.text-body-secondary {
+    color: white !important;
+    display: flex;
+    text-align: center;
+}
+
+.footerCon {
+    display: flex;
+    justify-content: space-around;
+}
+
+.aboutUs {
+    text-align: center;
+    color: white;
+}
+
+.iconWeb {
+    width: 30px;
+    height: 30px;
+}

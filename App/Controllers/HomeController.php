@@ -4,6 +4,8 @@ namespace App\Controllers;
 
 use App\Core\AControllerBase;
 use App\Core\Responses\Response;
+use App\Models\Character;
+use App\Models\Guide;
 
 /**
  * Class HomeController
@@ -28,7 +30,22 @@ class HomeController extends AControllerBase
      */
     public function index(): Response
     {
-        return $this->html();
+        $guides = Guide::getAll();
+        $banners = array();
+        $names = array();
+
+        foreach ($guides as $guide) {
+            $character = Character::getOne($guide->getCharacterId());
+            $name = $character->getName();
+            $banners[] = "../../../public/images/characters/banners/" . $name . ".jpg";
+            $names[] = $name;
+        }
+
+        return $this->html([
+            "guides" => $guides,
+            "banners" => $banners,
+            "names" => $names
+            ]);
     }
 
     /**
