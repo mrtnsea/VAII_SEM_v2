@@ -7,6 +7,9 @@ CREATE TABLE `characters`
 (
     `id`    int(11) NOT NULL AUTO_INCREMENT,
     `name`  varchar(30) NOT NULL,
+    `icon_image`    varchar(300)    NOT NULL,
+    `banner_image`  varchar(300)    NOT NULL,
+    `splash_image`  varchar(300)    NOT NULL,
     PRIMARY KEY (`id`)
 );
 
@@ -14,8 +17,10 @@ DROP TABLE IF EXISTS `guides`;
 CREATE TABLE `guides`
 (
     `id`    int(11) NOT NULL AUTO_INCREMENT,
+    `version`   int(11) NOT NULL,
+    `last_change`   DATETIME NOT NULL,
     `character_id`  int(11) NOT NULL,
-    `is_infographic`   varchar(3) NOT NULL,
+    `infographic_image`   varchar(300)  NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`)
 );
@@ -43,22 +48,22 @@ CREATE TABLE `images`
     FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)
 );
 
-INSERT INTO `characters` (`name`)
-VALUES ('Asta'),
-       ('Blade'),
-       ('Gepard'),
-       ('Jingliu'),
-       ('Luocha'),
-       ('Welt');
+INSERT INTO `characters` (`name`, `icon_image`, `banner_image`, `splash_image`)
+VALUES ('Asta', 'public/images/characters/icons/Asta.webp', 'public/images/characters/banners/Asta.jpg', 'public/images/characters/splash-arts/Asta.webp'),
+       ('Blade', 'public/images/characters/icons/Blade.webp', 'public/images/characters/banners/Blade.jpg', 'public/images/characters/splash-arts/Blade.webp'),
+       ('Gepard', 'public/images/characters/icons/Gepard.webp', 'public/images/characters/banners/Gepard.jpg', 'public/images/characters/splash-arts/Gepard.webp'),
+       ('Jingliu', 'public/images/characters/icons/Jingliu.webp', 'public/images/characters/banners/Jingliu.jpg', 'public/images/characters/splash-arts/Jingliu.webp'),
+       ('Luocha', 'public/images/characters/icons/Luocha.webp', 'public/images/characters/banners/Luocha.jpg', 'public/images/characters/splash-arts/Luocha.webp'),
+       ('Welt', 'public/images/characters/icons/Welt.webp', 'public/images/characters/banners/Welt.jpg', 'public/images/characters/splash-arts/Welt.webp');
 
-INSERT INTO `guides` (`character_id`, `is_infographic`)
-VALUES (1, 'no'),
-       (2, 'no'),
-       (3, 'no'),
-       (3, 'yes'),
-       (4, 'no'),
-       (5, 'no'),
-       (6, 'no');
+INSERT INTO `guides` (`character_id`, `version`, `last_change`, `infographic_image`)
+VALUES (1, 1, NOW(), null),
+       (2, 1, NOW(), null),
+       (3, 2, NOW(), null),
+       (3, 1, NOW(), 'public/images/characters/infographics/Gepard.png'),
+       (4, 1, NOW(), null),
+       (5, 1, NOW(), null),
+       (6, 1, NOW(), null);
 
 INSERT INTO `sections` (guide_id, `order`, `header`, `parent_section`)
 VALUES (2, 1, 'Blade Guide', null),

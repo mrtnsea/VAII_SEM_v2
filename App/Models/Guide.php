@@ -7,8 +7,30 @@ use App\Core\Model;
 class Guide extends Model
 {
     protected int $id;
+    protected int $version;
+    protected string $last_change;
     protected int $character_id;
-    protected string $is_infographic;
+    protected ?string $infographic_image;
+
+    public function getVersion(): int
+    {
+        return $this->version;
+    }
+
+    public function setVersion(int $version): void
+    {
+        $this->version = $version;
+    }
+
+    public function getLastChange(): string
+    {
+        return $this->last_change;
+    }
+
+    public function setLastChange(string $last_change): void
+    {
+        $this->last_change = $last_change;
+    }
 
     public function getId(): int
     {
@@ -30,13 +52,13 @@ class Guide extends Model
         $this->character_id = $character_id;
     }
 
-    public function getIsInfographic(): string
+    public function getInfographicImage(): ?string
     {
-        return $this->is_infographic;
+        return $this->infographic_image;
     }
 
-    public function setIsInfographic(string $is_infographic): void
+    public function setInfographicImage(?string $infographic_image): void
     {
-        $this->is_infographic = $is_infographic;
+        $this->infographic_image = $infographic_image;
     }
 }

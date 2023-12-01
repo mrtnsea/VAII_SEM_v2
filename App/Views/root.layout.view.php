@@ -17,39 +17,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-
-<nav class="navbar navbar-dark bg-dark navbar-expand-lg" id="sticky-navbar">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#">
-            <img src="../../public/images/logo.webp" alt="icon" class="iconWeb">
-        </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#guides">Guides</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="optimizer.html">Optimizer</a>
-                </li>
-            </ul>
-            <form class="ms-auto d-flex" role="search">
-                <input class="form-control me-2" type="email" placeholder="Username" aria-label="Username">
-                <input class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
-                <button class="btn btn-outline-success" type="submit">Log In</button>
-            </form>
+    <nav class="navbar navbar-dark bg-dark navbar-expand-lg" id="sticky-navbar">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="../../public/images/logo.webp" alt="icon" class="iconWeb">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#guides">Guides</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="optimizer.html">Optimizer</a>
+                    </li>
+                </ul>
+                <form class="ms-auto d-flex" role="search">
+                    <input class="form-control me-2" type="email" placeholder="Username" aria-label="Username">
+                    <input class="form-control me-2" type="password" placeholder="Password" aria-label="Password">
+                    <button class="btn btn-outline-success" type="submit">Log In</button>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
-<div class="container-fluid mt-3">
-    <div class="web-content">
-        <?= $contentHTML ?>
-    </div>
+    </nav>
+
+    <?= $contentHTML ?>
 
     <footer class="footer mt-auto py-3 bg-body-tertiary">
         <div>
@@ -64,6 +61,5 @@
             </div>
         </div>
     </footer>
-</div>
 </body>
 </html>

@@ -33,17 +33,20 @@ class HomeController extends AControllerBase
         $guides = Guide::getAll();
         $banners = array();
         $names = array();
+        $icons = array();
 
         foreach ($guides as $guide) {
             $character = Character::getOne($guide->getCharacterId());
             $name = $character->getName();
-            $banners[] = "../../../public/images/characters/banners/" . $name . ".jpg";
+            $banners[] = $character->getBannerImage();
+            $icons[] = $character->getIconImage();
             $names[] = $name;
         }
 
         return $this->html([
             "guides" => $guides,
             "banners" => $banners,
+            "icons" => $icons,
             "names" => $names
             ]);
     }

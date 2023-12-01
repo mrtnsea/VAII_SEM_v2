@@ -8,10 +8,6 @@
     float: left;
 }
 
-.actualitiesItem {
-    width: 90%;
-}
-
 .sidebar {
     position: fixed;
     border-radius: 25px;
@@ -77,6 +73,7 @@
 .cardActualities {
     color: white;
     margin: 10px;
+    width: 90%;
     border-radius: 25px;
     background: rgba(67,55,68,255);
 }
