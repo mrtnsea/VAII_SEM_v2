@@ -6,10 +6,21 @@
 <div class="container actualities">
     <h1>What's new</h1>
     <?php foreach (array_values($data["guides"]) as $i => $guide):?>
-        <?php if ($i == 4) break ?>
-        <a href="<?= $data["guides"][$i]->getInfographicImage() == null
+        <?php if ($i == 4)
+            break;
+        $tag = "";
+        $bg_tag = "";
+        if ($guide->getVersion() == 1) {
+            $tag = "New";
+            $bg_tag = "bg-secondary";
+        } else {
+            $tag = "Update";
+            $bg_tag = "bg-primary";
+        }
+        ?>
+        <a href="<?= $guide->getInfographicImage() == null
             ? $link->url("guide.index", ["id" => $guide->getId()])
-            : $data["guides"][$i]->getInfographicImage()?>" class="cardLink">
+            : $guide->getInfographicImage()?>" class="cardLink">
             <div class="row">
                 <div class="card col-12 col-sm-6 col-lg-3 cardActualities">
                     <div class="row no-gutters">
@@ -19,7 +30,7 @@
                         <div class="col-md-8">
                             <div class="card-body bodyActualities">
                                 <h5 class="card-title titleActualities"><?= $data["names"][$i] ?>
-                                    <span class="badge bg-secondary">New</span>
+                                    <span class="badge <?=$bg_tag?>"><?= $tag ?></span>
                                 </h5>
                             </div>
                         </div>
@@ -35,7 +46,7 @@
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <div class="input-group-text">
-                <input type="checkbox" aria-label="Checkbox for following text">
+                <input type="checkbox" aria-label="" checked>
             </div>
         </div>
         <span class="input-group-text"><?= $name ?></span>
