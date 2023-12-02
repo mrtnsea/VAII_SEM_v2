@@ -12,9 +12,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <title>Trailblazers</title>
     <link rel="icon" href="../../public/images/logo.webp">
-    <link rel="stylesheet" href="../../public/css/stylMain.css">
-    <link rel="stylesheet" href="../../public/css/stylShared.css">
+    <link rel="stylesheet" href="/public/css/stylMain.css">
+    <link rel="stylesheet" href="/public/css/stylShared.css">
+    <link rel="stylesheet" href="/public/css/stylGuide.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/public/js/hideEmpty.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg" id="sticky-navbar">
@@ -28,10 +30,10 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link active" aria-current="page" href="<?= $link->url("home.index") ?>">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#guides">Guides</a>
+                        <a class="nav-link" href="<?= $link->url("home.index") ?> #guides">Guides</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="optimizer.html">Optimizer</a>

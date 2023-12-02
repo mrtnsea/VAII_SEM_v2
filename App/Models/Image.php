@@ -9,7 +9,7 @@ class Image extends Model
     protected int $id;
     protected int $section_id;
     protected string $image;
-    protected string $card_header;
+    protected ?string $card_header;
 
     public function getId(): int
     {
@@ -41,12 +41,12 @@ class Image extends Model
         $this->image = $image;
     }
 
-    public function getCardHeader(): string
+    public function getCardHeader(): ?string
     {
         return $this->card_header;
     }
 
-    public function setCardHeader(string $card_header): void
+    public function setCardHeader(?string $card_header): void
     {
         $this->card_header = $card_header;
     }

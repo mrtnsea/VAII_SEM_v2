@@ -32,7 +32,9 @@ CREATE TABLE `sections`
     `guide_id`  int(11) NOT NULL,
     `parent_section` int(11) NULL,
     `order` int(11) NOT NULL,
+    `name`  varchar(30) NOT NULL,
     `header`    varchar(100) NOT NULL,
+    `text`  TEXT NULL,
     PRIMARY KEY (`id`),
     FOREIGN KEY (`guide_id`) REFERENCES `guides` (`id`)
 );
@@ -65,13 +67,34 @@ VALUES (1, 1, NOW(), null),
        (5, 1, NOW(), null),
        (6, 1, NOW(), null);
 
-INSERT INTO `sections` (guide_id, `order`, `header`, `parent_section`)
-VALUES (2, 1, 'Blade Guide', null),
-       (2, 2, 'Mechanics', null),
-       (2, 3, 'Relics', null),
-       (2, 4, 'Stats', null),
-       (2, 5, 'Main stats', 4),
-       (2, 6, 'Substats priority:\nCrit Rate / Damage > HP% > Speed', 4);
+INSERT INTO `sections` (guide_id, `order`, `header`, `name`, `parent_section`, `text`)
+VALUES (2, 1, 'Blade Guide', 'Guide', null,
+        CONCAT('Blade is a wind character following the path of Destruction. Blade scales of maximum hp',
+               ' and his main source of damage are his normal and follow-up attacks. His biggest strength',
+               ' is being able to do a lot of damage while staying relatively tanky. In addition to that,',
+               ' since he mainly uses his normal attacks, Blade is a very skill points efficient unit.')),
+       (2, 2, 'Mechanics', 'Mechanics', null,
+        CONCAT('When Blade uses his Skill, it enhances his Basic ATK without ending the current turn.',
+            'If Blade receives buff that last for n number of turns after using his skill, but before',
+            'his next normal attack, this attack will not decrease number of available turns before the',
+            'buff runs out, additionally he will still receive all buffs for this action.\n\n',
+            'Blade’s Talent works on a stack-based system.He gains 1 stack every time his HP is reduced,',
+            'either by sustaining damage or having his HP consumed by abilities, and he can gain a maximum',
+            'of 5 stacks. At 5 stacks, Blade will immediately use a follow-up attack, striking all enemies',
+            'on the field and restoring 25% of his Max HP. Damage over time effects also give blade 1 stack',
+            'per individual DoT debuff.')),
+       (2, 3, 'Relics', 'Relics', null,
+        CONCAT('4 piece Longevous Disciple set is his best in slot relic set, because',
+                'it offers him a lot hp% and overall a lot of sustainability and damage.\n\n',
+                'Eagle of Twilight Line can be a good 2 piece option, because of the',
+                'wind damage bonus if you don''t have 4 piece Longevous Disciple.\n\n',
+                'Rutilant Arena 2 piece provides buff to his normal attacks, which',
+                'are most of his damage.\n\n',
+                'Inert Salsotto 2 piece provides buff to his ultimate attack. Can be good,'
+                'if you don''t have Rutilant Arena 2 piece.')),
+       (2, 4, 'Stats', 'Stats', null, null),
+       (2, 5, 'Main stats', 'Main stats', 4, 'Speed and HP% boots are interchangeable, so choose whichever you have better substats for.'),
+       (2, 6, 'Substats priority:\nCrit Rate / Damage > HP% > Speed', 'Substats', 4, null);
 
 INSERT INTO `images` (section_id, image, card_header)
 VALUES (1, '../../public/images/characters/splash-arts/Blade.webp', null),

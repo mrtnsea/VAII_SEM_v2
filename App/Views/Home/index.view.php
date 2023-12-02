@@ -1,7 +1,5 @@
 <?php
-
 /** @var Array $data */
-
 /** @var \App\Core\LinkGenerator $link */
 ?>
 
@@ -9,7 +7,9 @@
     <h1>What's new</h1>
     <?php foreach (array_values($data["guides"]) as $i => $guide):?>
         <?php if ($i == 4) break ?>
-        <a href="<?= $data["guides"][$i]->getInfographicImage() == null ? "TODO" : $data["guides"][$i]->getInfographicImage()?>" class="cardLink">
+        <a href="<?= $data["guides"][$i]->getInfographicImage() == null
+            ? $link->url("guide.index", ["id" => $guide->getId()])
+            : $data["guides"][$i]->getInfographicImage()?>" class="cardLink">
             <div class="row">
                 <div class="card col-12 col-sm-6 col-lg-3 cardActualities">
                     <div class="row no-gutters">
@@ -53,7 +53,9 @@
                 </div>
                 <div class="card-body text-center">
                     <h5 class="card-title text-center"><?= $data["names"][$i] ?></h5>
-                    <a href="<?= $data["guides"][$i]->getInfographicImage() == null ? "TODO" : $data["guides"][$i]->getInfographicImage()?>"
+                    <a href="<?= $data["guides"][$i]->getInfographicImage() == null
+                        ? $link->url("guide.index", ["id" => $guide->getId()])
+                        : $data["guides"][$i]->getInfographicImage()?>"
                        class="btn btn-primary"><?= $data["guides"][$i]->getInfographicImage() == null ? "Guide" : "Infographic" ?></a>
                 </div>
             </div>
