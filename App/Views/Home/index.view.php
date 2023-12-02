@@ -46,7 +46,7 @@
     <div class="input-group mb-3">
         <div class="input-group-prepend">
             <div class="input-group-text">
-                <input type="checkbox" aria-label="" checked>
+                <input type="checkbox" aria-label="" class="<?= $name ?>" checked>
             </div>
         </div>
         <span class="input-group-text"><?= $name ?></span>
@@ -58,16 +58,16 @@
     <h1>Guides</h1>
     <div class="row row-cols-2">
         <?php foreach (array_values($data["guides"]) as $i => $guide):?>
-            <div class="card col-12 col-sm-6 col-lg-3 cardGuide">
+            <div class="card col-12 col-sm-6 col-lg-3 cardGuide <?= $data["names"][$i] ?>">
                 <div class="d-flex justify-content-center align-items-center">
                     <img src="<?= $data["icons"][$i] ?>" class="card-img img-fluid" alt="<?= $data["names"][$i] ?>">
                 </div>
                 <div class="card-body text-center">
                     <h5 class="card-title text-center"><?= $data["names"][$i] ?></h5>
-                    <a href="<?= $data["guides"][$i]->getInfographicImage() == null
+                    <a href="<?= $guide->getInfographicImage() == null
                         ? $link->url("guide.index", ["id" => $guide->getId()])
-                        : $data["guides"][$i]->getInfographicImage()?>"
-                       class="btn btn-primary"><?= $data["guides"][$i]->getInfographicImage() == null ? "Guide" : "Infographic" ?></a>
+                        : $guide->getInfographicImage()?>"
+                       class="btn btn-primary"><?= $guide->getInfographicImage() == null ? "Guide" : "Infographic" ?></a>
                 </div>
             </div>
         <?php endforeach; ?>
