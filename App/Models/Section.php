@@ -14,6 +14,15 @@ class Section extends Model
     protected string $name;
     protected ?string $text;
 
+    /**
+     * @param int $guide_id
+     * @param int|null $parent_section
+     * @param int $order
+     * @param string $header
+     * @param string $name
+     * @param string|null $text
+     */
+
     public function getId(): int
     {
         return $this->id;

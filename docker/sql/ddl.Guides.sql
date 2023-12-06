@@ -50,6 +50,15 @@ CREATE TABLE `images`
     FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)
 );
 
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users`
+(
+    `id`    int(11) NOT NULL AUTO_INCREMENT,
+    `login` varchar(30) NOT NULL,
+    `password_hash` TEXT NOT NULL,
+    PRIMARY KEY (`id`)
+);
+
 INSERT INTO `characters` (`name`, `icon_image`, `banner_image`, `splash_image`)
 VALUES ('Asta', 'public/images/characters/icons/Asta.webp', 'public/images/characters/banners/Asta.jpg', 'public/images/characters/splash-arts/Asta.webp'),
        ('Blade', 'public/images/characters/icons/Blade.webp', 'public/images/characters/banners/Blade.jpg', 'public/images/characters/splash-arts/Blade.webp'),

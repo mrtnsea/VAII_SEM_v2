@@ -1,4 +1,4 @@
-function assignEventHandlers() {
+function assignCheckBoxEventHandlers() {
     const checkBoxes = document.querySelectorAll('.sidebar input[type="checkbox"]');
 
     checkBoxes.forEach(checkBox => {
@@ -19,4 +19,4 @@ function assignEventHandlers() {
     });
 }
 
-window.addEventListener('DOMContentLoaded', assignEventHandlers);
+window.addEventListener('DOMContentLoaded', assignCheckBoxEventHandlers);
