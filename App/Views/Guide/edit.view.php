@@ -5,7 +5,7 @@
 
 <div class="options">
     <div class="editor_tools">
-        <button class="form_button" type="submit" form="guideForm">Save</button>
+        <button id="save_button" class="form_button" type="submit" form="guideForm">Save</button>
     </div>
 </div>
 

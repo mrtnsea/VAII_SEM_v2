@@ -1,5 +1,6 @@
-//let changes = false;
+let unsavedChanges = 0;
 let sectionCount = 0;
+let save = false;
 
 function assignTextAreaEventHandlers() {
     const inputs = document.querySelectorAll('.edit_area');
@@ -13,11 +14,22 @@ function assignTextAreaEventHandlers() {
 }
 
 function assignChangeHandlers() {
-    // TODO
+    document.querySelector("#save_button").addEventListener('click', setSave);
 }
+
+function setSave() {
+    save = true;
+}
+
+window.addEventListener('beforeunload', function (event) {
+    if (unsavedChanges !== 0 && !save) {
+        event.preventDefault();
+    }
+});
 
 function addSection() {
     sectionCount++;
+    unsavedChanges++;
     let form = document.querySelector("#guideForm");
     let div = document.createElement("div");
     let h2 = document.createElement("h2");
@@ -65,6 +77,7 @@ function addSection() {
     let buttonDiv = document.querySelector("#buttonDiv");
     form.removeChild(buttonDiv);
     form.appendChild(buttonDiv);
+
 }
 
 window.addEventListener('DOMContentLoaded', assignTextAreaEventHandlers);
