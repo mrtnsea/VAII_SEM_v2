@@ -14,7 +14,11 @@ function assignTextAreaEventHandlers() {
 }
 
 function assignChangeHandlers() {
-    document.querySelector("#save_button").addEventListener('click', setSave);
+    let save = document.querySelector("#save_button")
+
+    if (document.querySelector("#save_button") !== null) {
+        save.addEventListener('click', setSave);
+    }
 }
 
 function setSave() {
