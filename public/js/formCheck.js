@@ -109,5 +109,46 @@ function assignRegisterCheck() {
     }
 }
 
+function assignFormCheck() {
+    let form = document.getElementById("resourceForm");
+
+    if (form !== null) {
+        form.addEventListener("submit", async function (event) {
+            event.preventDefault();
+            if (validateResourceAdd()) {
+                let fileInput = document.getElementById("fileInput");
+                let name = document.getElementById("name");
+                let selector = document.getElementById("selector");
+                let formData = new FormData();
+                formData.append("fileInput", fileInput.files.length === 0 ? null : fileInput.files[0]);
+                let object = {};
+                formData.forEach((value, key) => object[key] = value);
+                let jsona = JSON.stringify(object);
+
+                let response = await fetch("http://localhost?c=resourceApi&a=addResource",
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            name: name.value,
+                            type: selector.value,
+                            fileInput: formData
+                        }),
+                        headers: {
+                            "Content-type": "application/json",
+                            Accept: "application/json",
+                            Cookie: document.cookie
+                        }
+                    });
+
+                if (response.status !== 200) {
+                    return;
+                }
+
+                let json = await response.json();
+            }
+        })
+    }
+}
+
 window.addEventListener('DOMContentLoaded', assignRegisterCheck);
 window.addEventListener('DOMContentLoaded', assignLoginCheck);

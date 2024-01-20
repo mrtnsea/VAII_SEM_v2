@@ -9,7 +9,39 @@ class Guide extends Model
     protected int $id;
     protected int $version;
     protected string $last_change;
-    protected int $character_id;
+    protected string $name;
+    protected string $icon;
+    protected string $banner_image;
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): void
+    {
+        $this->name = $name;
+    }
+
+    public function getIcon(): string
+    {
+        return $this->icon;
+    }
+
+    public function setIcon(string $icon): void
+    {
+        $this->icon = $icon;
+    }
+
+    public function getBannerImage(): string
+    {
+        return $this->banner_image;
+    }
+
+    public function setBannerImage(string $banner_image): void
+    {
+        $this->banner_image = $banner_image;
+    }
     protected ?string $infographic_image;
 
     public function getVersion(): int
@@ -40,16 +72,6 @@ class Guide extends Model
     public function setId(int $id): void
     {
         $this->id = $id;
-    }
-
-    public function getCharacterId(): int
-    {
-        return $this->character_id;
-    }
-
-    public function setCharacterId(int $character_id): void
-    {
-        $this->character_id = $character_id;
     }
 
     public function getInfographicImage(): ?string

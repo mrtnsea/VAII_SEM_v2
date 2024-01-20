@@ -15,10 +15,12 @@
     <link rel="stylesheet" href="/public/css/stylMain.css">
     <link rel="stylesheet" href="/public/css/stylShared.css">
     <link rel="stylesheet" href="/public/css/stylGuide.css">
+    <link rel="stylesheet" href="/public/css/stylResources.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/public/js/hideEmptyContainers.js"></script>
     <script src="/public/js/filterGuides.js"></script>
     <script src="/public/js/guideEdit.js"></script>
+    <script src="/public/js/resorces.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg" id="sticky-navbar">
@@ -38,8 +40,8 @@
                         <a class="nav-link" href="<?= $link->url("home.index") ?> #guides">Guides</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="optimizer.html">
-                            Optimizer
+                        <a class="nav-link" href="<?= $link->url("resources.index") ?>">
+                            Resources
                         </a>
                     </li>
                 </ul>

@@ -9,6 +9,17 @@ class User extends Model
     protected int $id;
     protected string $login;
     protected string $password_hash;
+    protected bool $admin;
+
+    public function isAdmin(): bool
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin(bool $admin): void
+    {
+        $this->admin = $admin;
+    }
 
     public function getLogin(): string
     {

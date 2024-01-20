@@ -31,23 +31,14 @@ class HomeController extends AControllerBase
     public function index(): Response
     {
         $guides = Guide::getAll();
-        $banners = array();
-        $names = array();
-        $icons = array();
+        $names = [];
 
         foreach ($guides as $guide) {
-            $character = Character::getOne($guide->getCharacterId());
-            $name = $character->getName();
-            $banners[] = $character->getBannerImage();
-            $icons[] = $character->getIconImage();
-            $names[] = $name;
+            if (!isset($names[$guide->getName()])) {
+                $names[$guide->getName()] = $guide->getName();
+            }
         }
 
-        return $this->html([
-            "guides" => $guides,
-            "banners" => $banners,
-            "icons" => $icons,
-            "names" => $names
-            ]);
+        return $this->html(["guides" => $guides, "names" => $names]);
     }
 }

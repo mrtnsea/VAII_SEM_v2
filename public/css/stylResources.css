@@ -1,0 +1,28 @@
+.res-container {
+    width: 55%;
+    display: block;
+    margin-top: 70px;
+    margin-left: 15%;
+    background: rgba(44,41,47,255);
+    border-radius: 25px;
+    float: left;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+.resource {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.resource > .cardGuide > button {
+    position: relative;
+    left: 85%;
+    margin-top: 5%;
+}
+
+button {
+    border-radius: 25px;
+}

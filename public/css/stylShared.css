@@ -53,3 +53,14 @@ body {
 #links {
     width: 100%;
 }
+
+.invalid-feedback {
+    margin-top: 5px;
+    display: block;
+}
+
+.feedback {
+    margin-top: 5px;
+    display: block;
+    color: green;
+}
