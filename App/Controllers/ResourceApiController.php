@@ -10,6 +10,11 @@ use App\Models\User;
 
 class ResourceApiController extends AControllerBase
 {
+    public function authorize(string $action)
+    {
+        return $this->app->getAuth()->isAdmin();
+    }
+
     public function index(): Response
     {
         throw new HTTPException(501, "Not Implemented");

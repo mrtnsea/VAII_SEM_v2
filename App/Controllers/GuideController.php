@@ -12,7 +12,11 @@ class GuideController extends AControllerBase
 {
     public function authorize($action)
     {
-        return true;
+        if ($action === "index") {
+            return true;
+        }
+
+        return $this->app->getAuth()->isAdmin();
     }
 
     public function index(): Response

@@ -7,6 +7,12 @@ use App\Core\Model;
 class User extends Model
 {
     protected int $id;
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     protected string $login;
     protected string $password_hash;
     protected bool $admin;

@@ -1,17 +1,21 @@
 <?php
 /** @var Array $data */
 /** @var \App\Core\LinkGenerator $link */
+/** @var \App\Core\IAuthenticator $auth */
 ?>
 
 <div class="options">
-    <div class="editor_tools">
-        <form method="post" action="<?= $link->url("guide.edit", ["id" => $data["id"]])?>">
-            <input type="submit" value="Edit" />
-        </form>
-        <form method="post" action="<?= $link->url("guide.delete", ["id" => $data["id"]])?>">
-            <input type="submit" value="Delete" />
-        </form>
-    </div>
+
+    <?php if ($auth->isAdmin()) { ?>
+        <div class="editor_tools">
+            <form method="post" action="<?= $link->url("guide.edit", ["id" => $data["id"]])?>">
+                <input type="submit" value="Edit" />
+            </form>
+            <form method="post" action="<?= $link->url("guide.delete", ["id" => $data["id"]])?>">
+                <input type="submit" value="Delete" />
+            </form>
+        </div>
+    <?php } ?>
 
     <div class="tableOfContent" id="table">
         <h5>Table of contents</h5>

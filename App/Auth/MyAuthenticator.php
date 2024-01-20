@@ -42,7 +42,15 @@ class MyAuthenticator implements IAuthenticator
 
     public function getLoggedUserId(): mixed
     {
-        return $_SESSION["user"];
+        if ($this->isLogged()) {
+            $user = User::getAll("login = ?", [$_SESSION["user"]]);
+            $a = sizeof($user);
+            if (sizeof($user) === 1) {
+                return $user[0]->getId();
+            }
+        }
+
+        return null;
     }
 
     public function getLoggedUserContext(): mixed
@@ -53,5 +61,22 @@ class MyAuthenticator implements IAuthenticator
     public function isLogged(): bool
     {
         return isset($_SESSION["user"]) && $_SESSION["user"] != null;
+    }
+
+    public function isAdmin(): bool
+    {
+        $id = $this->getLoggedUserId();
+
+        if ($id === null) {
+            return false;
+        }
+
+        $user = User::getone($id);
+
+        if ($user === null) {
+            return false;
+        }
+
+        return $user->isAdmin();
     }
 }

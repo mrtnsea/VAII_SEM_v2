@@ -39,11 +39,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= $link->url("home.index") ?> #guides">Guides</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="<?= $link->url("resources.index") ?>">
-                            Resources
-                        </a>
-                    </li>
+                    <?php if ($auth->isAdmin()) {?>
+                        <li class="nav-item" >
+                            <a class="nav-link" href="<?= $link->url("resources.index") ?>">
+                                Resources
+                            </a>
+                        </li>
+                    <?php } ?>
                 </ul>
                 <ul class="navbar-nav">
                     <li class="nav-item">

@@ -6,9 +6,16 @@ use App\Core\AControllerBase;
 use App\Core\HTTPException;
 use App\Core\Responses\Response;
 use App\Models\Guide;
+use App\Models\User;
 
 class ResourcesController extends AControllerBase
 {
+
+    public function authorize(string $action)
+    {
+        return $this->app->getAuth()->isAdmin();
+    }
+
     public function index(): Response
     {
         $guides = Guide::getAll();
