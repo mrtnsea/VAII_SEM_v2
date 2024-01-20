@@ -28,7 +28,7 @@ $layout = 'auth';
                             </button>
                         </div>
                     </form>
-                    <a  aria-current="page" href="<?= $link->url("register") ?>">Register</a>
+                    <a aria-current="page" href="<?= $link->url("register") ?>">Register</a>
                 </div>
             </div>
         </div>

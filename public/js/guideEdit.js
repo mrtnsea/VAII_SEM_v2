@@ -15,8 +15,18 @@ function assignTextAreaEventHandlers() {
 
 function assignChangeHandlers() {
     let save = document.querySelector("#save_button")
+    let del = document.getElementById("delete");
 
-    if (document.querySelector("#save_button") !== null) {
+    if (del !== null) {
+        del.addEventListener("click", function (event) {
+            let text = "Do you want to delete this guide?";
+            if (!confirm(text)) {
+                event.preventDefault();
+            }
+        })
+    }
+
+    if (save !== null) {
         save.addEventListener('click', setSave);
     }
 }
@@ -81,8 +91,77 @@ function addSection() {
     let buttonDiv = document.querySelector("#buttonDiv");
     form.removeChild(buttonDiv);
     form.appendChild(buttonDiv);
+}
 
+function assignImageChangeHandlers() {
+    let bins = document.querySelectorAll(".trashBin");
+    let addButtons = document.querySelectorAll(".addCardButton, .addImageButton");
+
+    bins.forEach(bin => {
+        bin.addEventListener("click", async function () {
+            let match = bin.id.match(/\d+/);
+            let response = await fetch("http://localhost?c=guideApi&a=removeImage", {
+                method: "POST",
+                body: JSON.stringify({
+                    id: parseInt(match[0])
+                }),
+                headers: {
+                    "Content-type": "application/json",
+                    Accept: "application/json",
+                    Cookie: document.cookie
+                }
+            });
+
+            if (response.status === 204) {
+                let element = document.getElementById(match[0]);
+                element.remove();
+            }
+        })
+    });
+
+    addButtons.forEach(button => {
+        button.addEventListener("click", async function () {
+            let sectionId = button.id.match(/\d+/);
+            let isImage = button.id.startsWith("addImage");
+            let cardHeader = document.getElementById("input_" + sectionId);
+            let cardHeaderError = document.getElementById("cardHeaderError_" + sectionId);
+            let option = document.getElementById("card_" + sectionId).value;
+            if (isImage) {
+                option = document.getElementById("image_" + sectionId).value;
+            }
+
+            if (!isImage) {
+                cardHeaderError.innerHTML = "";
+
+                if (cardHeader.value.trim().length === 0) {
+                    cardHeaderError.innerHTML = "This field is required!";
+                    return;
+                }
+            }
+
+            let response = await fetch("http://localhost?c=guideApi&a=addImage", {
+                method: "POST",
+                body: JSON.stringify({
+                    id: parseInt(sectionId[0]),
+                    path: option,
+                    header: isImage ? null : cardHeader.value
+                }),
+                headers: {
+                    "Content-type": "application/json",
+                    Accept: "application/json",
+                    Cookie: document.cookie
+                }
+            });
+
+            if (response.status !== 204) {
+                return;
+            }
+
+            location.reload();
+        })
+    });
 }
 
 window.addEventListener('DOMContentLoaded', assignTextAreaEventHandlers);
 window.addEventListener('DOMContentLoaded', assignChangeHandlers);
+window.addEventListener("DOMContentLoaded", assignImageChangeHandlers)

@@ -52,10 +52,17 @@ class GuideController extends AControllerBase
             }
         }
 
+        $resources = glob("public/images/characters/splash-arts/*.*");
+        $resources = array_merge($resources, glob("public/images/characters/icons/*.*"));
+        $resources = array_merge($resources, glob("public/images/characters/icons/*.*"));
+        $resources = array_merge($resources, glob("public/images/relics/icons/*.*"));
+        $resources = array_merge($resources, glob("public/images/relics/stats/*.*"));
+
         return $this->html([
             "id" => $id,
             "sections" => $sections,
-            "images" => $images
+            "images" => $images,
+            "resources" => $resources
         ]);
     }
 

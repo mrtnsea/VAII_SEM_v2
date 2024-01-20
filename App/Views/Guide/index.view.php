@@ -12,7 +12,7 @@
                 <input type="submit" value="Edit" />
             </form>
             <form method="post" action="<?= $link->url("guide.delete", ["id" => $data["id"]])?>">
-                <input type="submit" value="Delete" />
+                <input type="submit" value="Delete" id="delete"/>
             </form>
         </div>
     <?php } ?>
