@@ -61,6 +61,24 @@ CREATE TABLE `users`
     PRIMARY KEY (`id`)
 );
 
+DROP TABLE IF EXISTS `relics`;
+CREATE TABLE `relics`
+(
+    `id`    int(11) NOT NULL AUTO_INCREMENT,
+    `userId`   int(11) NOT NULL,
+    `icon`  varchar(300) NOT NULL,
+    `main`  varchar(30) NOT NULL,
+    `mainVal`   int(30)   NOT NULL,
+    `first`  varchar(30) NOT NULL,
+    `firstVal`   int(30)   NOT NULL,
+    `second`  varchar(30) NOT NULL,
+    `secondVal`   int(30)   NOT NULL,
+    `third`  varchar(30) NOT NULL,
+    `thirdVal`   int(30)   NOT NULL,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`userId`) REFERENCES `users` (`id`)
+);
+
 INSERT INTO `characters` (`name`, `icon_image`, `banner_image`, `splash_image`)
 VALUES ('Asta', 'public/images/characters/icons/Asta.webp', 'public/images/characters/banners/Asta.jpg', 'public/images/characters/splash-arts/Asta.webp'),
        ('Blade', 'public/images/characters/icons/Blade.webp', 'public/images/characters/banners/Blade.jpg', 'public/images/characters/splash-arts/Blade.webp'),
@@ -119,4 +137,10 @@ VALUES (1, '../../public/images/characters/splash-arts/Blade.webp', null),
        (5, '../../public/images/relics/stats/Sphere.png', 'Hp%');
 
 INSERT INTO `users` (login, password_hash, admin)
-VALUES ('mato', '$2y$10$GVV6cgQbBWp9/2cNRMt6AOZHL6DuFQj/k3fNtuOtgLs4O4iSI8.6O', true)
+VALUES ('mato', '$2y$10$GVV6cgQbBWp9/2cNRMt6AOZHL6DuFQj/k3fNtuOtgLs4O4iSI8.6O', true);
+
+INSERT INTO `relics` (userId, icon, main, mainVal, first, firstVal, second, secondVal, third, thirdVal)
+VALUES (1, 'public/images/relics/pieces/Disciple_Body.webp', 'Atk%', 49, 'Crit Rate', 10, 'Speed', 8, 'Crit Damge', 15),
+       (1, 'public/images/relics/pieces/Disciple_Body.webp', 'Hp%', 49, 'Crit Rate', 15, 'Atk%', 21, 'Crit Damge', 8),
+       (1, 'public/images/relics/pieces/Disciple_Head.webp', 'Crit Rate', 31, 'Hp%', 10, 'Speed', 8, 'Atk%', 15),
+       (1, 'public/images/relics/pieces/Disciple_Boots.webp', 'Crit Damge', 62, 'Hp%', 10, 'Speed', 8, 'Atk%', 15)

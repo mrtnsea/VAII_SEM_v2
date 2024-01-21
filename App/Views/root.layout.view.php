@@ -21,6 +21,7 @@
     <script src="/public/js/filterGuides.js"></script>
     <script src="/public/js/guideEdit.js"></script>
     <script src="/public/js/resorces.js"></script>
+    <script src="/public/js/relics.js"></script>
 </head>
 <body>
     <nav class="navbar navbar-dark bg-dark navbar-expand-lg" id="sticky-navbar">
@@ -39,6 +40,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="<?= $link->url("home.index") ?> #guides">Guides</a>
                     </li>
+                    <?php if ($auth->isLogged()) {?>
+                        <li class="nav-item" >
+                            <a class="nav-link" href="<?= $link->url("relics.index") ?>">
+                                Relics
+                            </a>
+                        </li>
+                    <?php } ?>
                     <?php if ($auth->isAdmin()) {?>
                         <li class="nav-item" >
                             <a class="nav-link" href="<?= $link->url("resources.index") ?>">
