@@ -18,9 +18,7 @@
             $bg_tag = "bg-primary";
         }
         ?>
-        <a href="<?= $guide->getInfographicImage() == null
-            ? $link->url("guide.index", ["id" => $guide->getId()])
-            : $guide->getInfographicImage()?>" class="cardLink">
+        <a href="<?= $link->url("guide.index", ["id" => $guide->getId()])?>" class="cardLink">
             <div class="row">
                 <div class="card col-12 col-sm-6 col-lg-3 cardActualities">
                     <div class="row no-gutters">
@@ -64,10 +62,8 @@
                 </div>
                 <div class="card-body text-center">
                     <h5 class="card-title text-center"><?= $guide->getName() ?></h5>
-                    <a href="<?= $guide->getInfographicImage() == null
-                        ? $link->url("guide.index", ["id" => $guide->getId()])
-                        : $guide->getInfographicImage()?>"
-                       class="btn btn-primary"><?= $guide->getInfographicImage() == null ? "Guide" : "Infographic" ?></a>
+                    <a href="<?= $link->url("guide.index", ["id" => $guide->getId()]) ?>"
+                       class="btn btn-primary">Guide</a>
                 </div>
             </div>
         <?php endforeach; ?>

@@ -64,3 +64,8 @@ body {
     display: block;
     color: green;
 }
+
+.sectionButton {
+    position: relative;
+    left: 45%;
+}

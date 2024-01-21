@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Core\AControllerBase;
+use App\Core\HTTPException;
 use App\Core\Responses\Response;
 use App\Models\Guide;
 use App\Models\Image;
@@ -81,31 +82,14 @@ class GuideController extends AControllerBase
             $section_id = str_replace("s_id_", "", $section_id);
             if (is_numeric($section_id)) {
                 $section = Section::getOne($section_id);
-                $text = $post["text_$section_id"];
-                $header = $post["s_header_$section_id"];
-                $section->setText($text == null ? null : $text);
-                $section->setHeader($header);
-                $section->save();
-            }
-        }
-
-        $new_section_ids = preg_grep("/new_s_\d+$/", $keys);
-        $order = sizeof($section_ids) + 1;
-
-        foreach ($new_section_ids as $section_id) {
-            $section_id = str_replace("new_s_", "", $section_id);
-            if (is_numeric($section_id)) {
-                $header = $post["new_header_$section_id"];
-                $text = $post["new_text_$section_id"];
-                $section = new Section();
-                $section->setGuideId($id);
-                $section->setText($text == null ? null : $text);
-                $section->setHeader($header);
-                $section->setName($header);
-                $section->setOrder($order);
-                $section->setParentSection(null);
-                $section->save();
-                $order++;
+                if ($section !== null) {
+                    $text = $post["text_$section_id"];
+                    $header = $post["s_header_$section_id"];
+                    $section->setText($text == null ? null : $text);
+                    $section->setHeader($header);
+                    $section->setName($header);
+                    $section->save();
+                }
             }
         }
 
@@ -132,5 +116,29 @@ class GuideController extends AControllerBase
         }
 
         return $this->redirect($this->url("home.index"));
+    }
+
+    public function add(): Response
+    {
+        $id = intval($this->request()->getValue("id"));
+
+        $sections = Section::getAll("guide_id = ?", [$id]);
+        $order = 1;
+
+        foreach ($sections as $section) {
+            if ($order <= $section->getOrder()) {
+                $order = $section->getOrder() + 1;
+            }
+        }
+
+        $section = new Section();
+        $section->setName("");
+        $section->setParentSection(null);
+        $section->setText(null);
+        $section->setOrder($order);
+        $section->setHeader("");
+        $section->setGuideId($id);
+        $section->save();
+        return $this->redirect($this->url("edit", ["id" => $id]));
     }
 }

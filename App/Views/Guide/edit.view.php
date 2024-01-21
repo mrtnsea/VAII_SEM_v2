@@ -17,8 +17,11 @@
         $headerType = $section->getParentSection() == null ? "Section" : "Subsection";
         $itemType = $section->getParentSection() == null ? "sectionItem" : "subSectionItem";
         ?>
-        <div class="section <?= $classHeader ?> <?= $top ?>">
-            <h2><?= $headerType ?></h2>
+        <div class="section <?= $classHeader ?> <?= $top ?>" id="section_<?= $section->getId() ?>">
+            <div>
+                <button class="btn-close sectionButton" aria-label="Close" id="<?= $section->getId() ?>"></button>
+                <h2><?= $headerType ?></h2>
+            </div>
             <div>
                 <h5>Header</h5>
                 <textarea name="s_header_<?= $section->getID() ?>" class="edit_area"><?= $section->getHeader() ?></textarea>
@@ -97,6 +100,18 @@
     <input type="submit" id="submit-form" class="hidden" />
     <input type="number" name="sectionCount" class="hidden" value="<?= sizeof($data["sections"]) ?>">
     <div class="section" id="buttonDiv">
-        <button class="form_button" type="button" onclick="addSection()">Add Section</button>
+        <?php if (sizeof($data["sections"]) === 0) { ?>
+            <a href="<?= $link->url("guide.add", ["id" => $data["id"]])?>">
+                <button class="form_button" style="margin-top: 70px" type="button">
+                    Add Section
+                </button>
+            </a>
+        <?php } else { ?>
+            <a href="<?= $link->url("guide.add", ["id" => $data["id"]])?>">
+                <button class="form_button" type="button">
+                    Add Section
+                </button>
+            </a>
+        <?php } ?>
     </div>
 </form>

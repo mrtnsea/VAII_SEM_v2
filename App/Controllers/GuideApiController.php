@@ -7,6 +7,7 @@ use App\Core\HTTPException;
 use App\Core\Responses\EmptyResponse;
 use App\Core\Responses\Response;
 use App\Models\Image;
+use App\Models\Section;
 
 class GuideApiController extends AControllerBase
 {
@@ -53,6 +54,26 @@ class GuideApiController extends AControllerBase
         $image->setCardHeader($json->header);
         $image->setSectionId($json->id);
         $image->save();
+
+        return new EmptyResponse();
+    }
+
+    public function removeSection(): Response
+    {
+        $json = $this->app->getRequest()->getRawBodyJSON();
+
+        if (!is_object($json) || !property_exists($json, "id") || !is_int($json->id)) {
+            throw new HTTPException(400, "Bad Request");
+        }
+
+        $section = Section::getOne($json->id);
+        $images = Image::getAll("section_id = ?", [$json->id]);
+
+        foreach ($images as $image) {
+            $image->delete();
+        }
+
+        $section->delete();
 
         return new EmptyResponse();
     }

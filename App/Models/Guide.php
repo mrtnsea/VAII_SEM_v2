@@ -42,7 +42,6 @@ class Guide extends Model
     {
         $this->banner_image = $banner_image;
     }
-    protected ?string $infographic_image;
 
     public function getVersion(): int
     {
@@ -72,15 +71,5 @@ class Guide extends Model
     public function setId(int $id): void
     {
         $this->id = $id;
-    }
-
-    public function getInfographicImage(): ?string
-    {
-        return $this->infographic_image;
-    }
-
-    public function setInfographicImage(?string $infographic_image): void
-    {
-        $this->infographic_image = $infographic_image;
     }
 }

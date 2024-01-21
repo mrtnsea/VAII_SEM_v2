@@ -20,7 +20,6 @@ CREATE TABLE `guides`
     `version`   int(11) NOT NULL,
     `last_change`   DATETIME NOT NULL,
     `name`  varchar(30) NOT NULL,
-    `infographic_image`   varchar(300)  NULL,
     `banner_image`  varchar(300)    NOT NULL,
     `icon`  varchar(300)    NOT NULL,
     PRIMARY KEY (`id`)
@@ -87,14 +86,13 @@ VALUES ('Asta', 'public/images/characters/icons/Asta.webp', 'public/images/chara
        ('Luocha', 'public/images/characters/icons/Luocha.webp', 'public/images/characters/banners/Luocha.jpg', 'public/images/characters/splash-arts/Luocha.webp'),
        ('Welt', 'public/images/characters/icons/Welt.webp', 'public/images/characters/banners/Welt.jpg', 'public/images/characters/splash-arts/Welt.webp');
 
-INSERT INTO `guides` (`name`, `version`, `last_change`, `infographic_image`, `banner_image`, `icon`)
-VALUES ('Asta', 1, NOW(), null, 'public/images/characters/banners/Asta.jpg', 'public/images/characters/icons/Asta.webp'),
-       ('Blade', 1, NOW(), null, 'public/images/characters/banners/Blade.jpg', 'public/images/characters/icons/Blade.webp'),
-       ('Gepard', 2, NOW(), null, 'public/images/characters/banners/Gepard.jpg', 'public/images/characters/icons/Gepard.webp'),
-       ('Gepard', 1, NOW(), 'public/images/characters/infographics/Gepard.png', 'public/images/characters/banners/Gepard.jpg', 'public/images/characters/icons/Gepard.webp'),
-       ('Jingliu', 1, NOW(), null, 'public/images/characters/banners/Jingliu.jpg', 'public/images/characters/icons/Jingliu.webp'),
-       ('Luocha', 1, NOW(), null, 'public/images/characters/banners/Luocha.jpg', 'public/images/characters/icons/Luocha.webp'),
-       ('Welt', 1, NOW(), null, 'public/images/characters/banners/Welt.jpg', 'public/images/characters/icons/Welt.webp');
+INSERT INTO `guides` (`name`, `version`, `last_change`, `banner_image`, `icon`)
+VALUES ('Asta', 1, NOW(), 'public/images/characters/banners/Asta.jpg', 'public/images/characters/icons/Asta.webp'),
+       ('Blade', 1, NOW(), 'public/images/characters/banners/Blade.jpg', 'public/images/characters/icons/Blade.webp'),
+       ('Gepard', 2, NOW(), 'public/images/characters/banners/Gepard.jpg', 'public/images/characters/icons/Gepard.webp'),
+       ('Jingliu', 1, NOW(), 'public/images/characters/banners/Jingliu.jpg', 'public/images/characters/icons/Jingliu.webp'),
+       ('Luocha', 1, NOW(), 'public/images/characters/banners/Luocha.jpg', 'public/images/characters/icons/Luocha.webp'),
+       ('Welt', 1, NOW(), 'public/images/characters/banners/Welt.jpg', 'public/images/characters/icons/Welt.webp');
 
 INSERT INTO `sections` (guide_id, `order`, `header`, `name`, `parent_section`, `text`)
 VALUES (2, 1, 'Blade Guide', 'Guide', null,
