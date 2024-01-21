@@ -24,40 +24,13 @@ class AuthController extends AControllerBase
         return $this->redirect(Configuration::LOGIN_URL);
     }
 
-    /**
-     * Login a user
-     * @return Response
-     */
     public function login(): Response
     {
-        $formData = $this->app->getRequest()->getPost();
-        $logged = null;
+        return $this->html();
+    }
 
-        if (isset($formData["submit"])) {
-            if (!is_string($formData["login"]) || !is_string($formData["password"])) {
-                return $this->html();
-            }
-
-            if (preg_match("/\s/", $formData["login"])) {
-                return $this->html();
-            }
-
-            if (preg_match("/\s/", $formData["password"])) {
-                return $this->html();
-            }
-
-            $logged = $this->app->getAuth()->login($formData["login"], $formData["password"]);
-            if ($logged) {
-                return $this->redirect($this->url("home.index"));
-            } else {
-                $data = [];
-                $data["passwordError"] = "Login information are not valid!";
-                $data["password"] = $formData["password"];
-                $data["login"] = $formData["login"];
-                return $this->html($data);
-            }
-        }
-
+    public function register(): Response
+    {
         return $this->html();
     }
 
@@ -69,46 +42,5 @@ class AuthController extends AControllerBase
     {
         $this->app->getAuth()->logout();
         return $this->redirect($this->url("home.index"));
-    }
-
-    public function register(): Response
-    {
-        $formData = $this->app->getRequest()->getPost();
-        $data = [];
-
-        if (isset($formData["submit"])) {
-            if (!is_string($formData["login"]) || !is_string($formData["password"])) {
-                return $this->html();
-            }
-
-            if (preg_match("/\s/", $formData["login"])
-                || strlen($formData["login"]) === 0) {
-                return $this->html();
-            }
-
-            if (!preg_match("/\d/", $formData["password"]) || !preg_match("/[^0-9]/", $formData["password"])) {
-                return $this->html();
-            }
-
-            if (preg_match("/\s/", $formData["password"])
-                || strlen($formData["password"]) < 8) {
-                return $this->html();
-            }
-
-            if (sizeof(User::getAll("login = ?", [$formData["login"]])) == 0) {
-                $user = new User();
-                $user->setLogin($formData["login"]);
-                $hash = password_hash($formData["password"], PASSWORD_DEFAULT);
-                $user->setPasswordHash($hash);
-                $user->save();
-            } else {
-                $data["login"] = $formData["login"];
-                $data["password"] = $formData["password"];
-                $data["passwordRep"] = $formData["passwordRep"];
-                $data["loginError"] = "Login is already taken!";
-            }
-        }
-
-        return $this->html($data);
     }
 }

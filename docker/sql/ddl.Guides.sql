@@ -57,7 +57,7 @@ CREATE TABLE `users`
     `id`    int(11) NOT NULL AUTO_INCREMENT,
     `login` varchar(30) NOT NULL,
     `password_hash` TEXT NOT NULL,
-    `admin` BOOL NOT NULL,
+    `admin` int(1),
     PRIMARY KEY (`id`)
 );
 
@@ -137,7 +137,7 @@ VALUES (1, '../../public/images/characters/splash-arts/Blade.webp', null),
        (5, '../../public/images/relics/stats/Sphere.png', 'Hp%');
 
 INSERT INTO `users` (login, password_hash, admin)
-VALUES ('mato', '$2y$10$GVV6cgQbBWp9/2cNRMt6AOZHL6DuFQj/k3fNtuOtgLs4O4iSI8.6O', true);
+VALUES ('mato', '$2y$10$GVV6cgQbBWp9/2cNRMt6AOZHL6DuFQj/k3fNtuOtgLs4O4iSI8.6O', 1);
 
 INSERT INTO `relics` (userId, icon, main, mainVal, first, firstVal, second, secondVal, third, thirdVal)
 VALUES (1, 'public/images/relics/pieces/Disciple_Body.webp', 'Atk%', 49, 'Crit Rate', 10, 'Speed', 8, 'Crit Damge', 15),

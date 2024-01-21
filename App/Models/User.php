@@ -8,21 +8,26 @@ class User extends Model
 {
     protected int $id;
 
+    protected string $login;
+    protected string $password_hash;
+    protected int $admin;
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
+    }
+
     public function getId(): int
     {
         return $this->id;
     }
 
-    protected string $login;
-    protected string $password_hash;
-    protected bool $admin;
-
-    public function isAdmin(): bool
+    public function isAdmin(): int
     {
         return $this->admin;
     }
 
-    public function setAdmin(bool $admin): void
+    public function setAdmin(int $admin): void
     {
         $this->admin = $admin;
     }

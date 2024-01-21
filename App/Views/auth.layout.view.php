@@ -11,6 +11,7 @@
     <title>Trailblazers</title>
     <link rel="icon" href="../../public/images/logo.webp">
     <link rel="stylesheet" href="/public/css/stylLogIn.css">
+    <link rel="stylesheet" href="/public/css/stylShared.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="/public/js/formCheck.js"></script>
 </head>

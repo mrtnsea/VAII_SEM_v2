@@ -42,7 +42,7 @@ function validateRegister() {
         is_valid = false;
     }
 
-    if (password < 8) {
+    if (password.trim().length < 8) {
         passwordError.innerHTML = "Must be at least 8 characters!";
         is_valid = false;
     }
@@ -89,49 +89,20 @@ function assignLoginCheck() {
     let loginForm = document.getElementById("loginForm");
 
     if (loginForm !== null) {
-        loginForm.addEventListener("submit", function(event) {
-            if (!validateLogin()) {
-                event.preventDefault();
-            }
-        });
-    }
-}
-
-function assignRegisterCheck() {
-    let registerForm = document.getElementById("registerForm");
-
-    if (registerForm !== null) {
-        registerForm.addEventListener("submit", function(event) {
-            if (!validateRegister()) {
-                event.preventDefault();
-            }
-        });
-    }
-}
-
-function assignFormCheck() {
-    let form = document.getElementById("resourceForm");
-
-    if (form !== null) {
-        form.addEventListener("submit", async function (event) {
+        loginForm.addEventListener("submit", async function(event) {
             event.preventDefault();
-            if (validateResourceAdd()) {
-                let fileInput = document.getElementById("fileInput");
-                let name = document.getElementById("name");
-                let selector = document.getElementById("selector");
-                let formData = new FormData();
-                formData.append("fileInput", fileInput.files.length === 0 ? null : fileInput.files[0]);
-                let object = {};
-                formData.forEach((value, key) => object[key] = value);
-                let jsona = JSON.stringify(object);
+            let passwordError = document.getElementById("passwordError");
+            let logSuccess = document.getElementById("logSuccess");
+            if (validateLogin()) {
+                let login = document.getElementById("login").value;
+                let password = document.getElementById('password').value;
 
-                let response = await fetch("http://localhost?c=resourceApi&a=addResource",
+                let response= await fetch("http://localhost?c=authApi&a=login",
                     {
                         method: "POST",
                         body: JSON.stringify({
-                            name: name.value,
-                            type: selector.value,
-                            fileInput: formData
+                            login: login,
+                            password: password,
                         }),
                         headers: {
                             "Content-type": "application/json",
@@ -141,12 +112,61 @@ function assignFormCheck() {
                     });
 
                 if (response.status !== 200) {
+                    passwordError.innerHTML = "Error when logging in!"
+                    return;
+                }
+
+                let success = await response.json();
+                if (!success) {
+                    passwordError.innerHTML = "Incorrect login information!"
+                } else {
+                    logSuccess.innerHTML = "Login successful!"
+                }
+            }
+        });
+    }
+}
+
+function assignRegisterCheck() {
+    let registerForm = document.getElementById("registerForm");
+
+    if (registerForm !== null) {
+        registerForm.addEventListener("submit", async function(event) {
+            event.preventDefault();
+            let regError = document.getElementById("regError");
+            let regSuccess = document.getElementById("regSuccess");
+
+            if (validateRegister()) {
+                let login = document.getElementById("login").value;
+                let password = document.getElementById('password').value;
+
+                let response= await fetch("http://localhost?c=authApi&a=register",
+                    {
+                        method: "POST",
+                        body: JSON.stringify({
+                            login: login,
+                            password: password,
+                        }),
+                        headers: {
+                            "Content-type": "application/json",
+                            Accept: "application/json",
+                            Cookie: document.cookie
+                        }
+                    });
+
+                if (response.status !== 200) {
+                    regError.innerHTML = "Error during registration!"
                     return;
                 }
 
                 let json = await response.json();
+                if (json.success) {
+                    regSuccess.innerHTML = json.message;
+                } else {
+                    regError.innerHTML = json.message;
+                }
             }
-        })
+        });
     }
 }
 

@@ -77,6 +77,6 @@ class MyAuthenticator implements IAuthenticator
             return false;
         }
 
-        return $user->isAdmin();
+        return $user->isAdmin() === 1;
     }
 }
